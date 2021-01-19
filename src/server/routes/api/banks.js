@@ -1,6 +1,6 @@
 var router = require("express").Router();
 
-router.get("/", async function (req, res) {
+router.get("/", function (req, res) {
   let dbQuery = "select * from banks";
 
   pool
@@ -11,11 +11,11 @@ router.get("/", async function (req, res) {
       res.send(result.rows);
     })
     .catch((err) => {
-      res.send(dbQuery);
+      res.send(err.message);
     });
 });
 
-router.get("/:id", async function (req, res) {
+router.get("/:id", function (req, res) {
   let id = req.params.id || "",
     dbQuery = "select * from banks where id=" + id,
     responseData = {};
@@ -35,7 +35,7 @@ router.get("/:id", async function (req, res) {
       } else res.send("Bank not found");
     })
     .catch((err) => {
-      res.send(dbQuery);
+      res.send(err.message);
     });
 });
 

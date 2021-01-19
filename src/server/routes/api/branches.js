@@ -1,6 +1,6 @@
 var router = require("express").Router();
 
-router.get("/", async function (req, res) {
+router.get("/", function (req, res) {
   let queryText = req.query.q || "",
     limit = req.query.limit || "All",
     offset = req.query.offset || 0,
@@ -27,11 +27,11 @@ router.get("/", async function (req, res) {
       res.send(result.rows);
     })
     .catch((err) => {
-      res.send(err);
+      res.send(err.message);
     });
 });
 
-router.get("/autocomplete", async function (req, res) {
+router.get("/autocomplete", function (req, res) {
   let queryText = req.query.q || "",
     limit = req.query.limit || "All",
     offset = req.query.offset || 0,
@@ -50,7 +50,7 @@ router.get("/autocomplete", async function (req, res) {
       res.send(result.rows);
     })
     .catch((err) => {
-      res.send(err);
+      res.send(err.message);
     });
 });
 
