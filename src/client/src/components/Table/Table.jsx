@@ -17,30 +17,27 @@ const Table = ({ branches }) => {
     let columns = [];
     if (branches.length) {
       Object.keys(branches[0]).forEach((key) => {
-        if (key === "favourite") {
-          columns.push({
-            title: parseLabel(key),
-            dataIndex: key,
-            key: key,
-            filters: [
-              { text: "Favourite Only", value: "Favourite" },
-              { text: "All", value: "All" },
-            ],
-            onFilter: (selected, record) => {
-              if (selected === "Favourite") {
-                return favourites.indexOf(record.ifsc) !== -1;
-              } else {
-                return true;
-              }
-            },
-          });
-        } else {
-          columns.push({
-            title: parseLabel(key),
-            dataIndex: key,
-            key: key,
-          });
-        }
+        columns.push({
+          title: parseLabel(key),
+          dataIndex: key,
+          key: key,
+        });
+      });
+      columns.push({
+        title: parseLabel(key),
+        dataIndex: key,
+        key: key,
+        filters: [
+          { text: "Favourite Only", value: "Favourite" },
+          { text: "All", value: "All" },
+        ],
+        onFilter: (selected, record) => {
+          if (selected === "Favourite") {
+            return favourites.indexOf(record.ifsc) !== -1;
+          } else {
+            return true;
+          }
+        },
       });
     }
     return columns;

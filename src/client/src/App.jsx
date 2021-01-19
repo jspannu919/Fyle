@@ -17,7 +17,7 @@ function App() {
   let filteredData = [];
 
   useEffect(() => {
-    axios.get("/api/branches").then(({ data }) => {
+    axios.get("/api/branches?limit=2000").then(({ data }) => {
       setBranches(data);
       setLoading(false);
     });
