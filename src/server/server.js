@@ -14,7 +14,7 @@ global.cache = cache;
 
 //cache serving custom middleware
 app.use((req, res, next) => {
-  const url = req.originalUrl;
+  const url = req._parsedUrl.path;
   const value = cache.get(url);
   if (value !== undefined) {
     console.log("Serving from cache " + url);

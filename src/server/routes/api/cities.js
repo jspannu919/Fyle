@@ -6,8 +6,11 @@ router.get("/", function (req, res) {
   pool
     .query(dbQuery)
     .then((result) => {
-      let success = cache.set(req.originalUrl, result.rows);
-      if (success) console.log(req.originalUrl + " successfully cached");
+      let success = cache.set("/api/cities" + req._parsedUrl.path, result.rows);
+      if (success)
+        console.log(
+          "/api/cities" + req._parsedUrl.path + " successfully cached"
+        );
       res.send(result.rows);
     })
     .catch((err) => {
@@ -25,8 +28,11 @@ router.get("/:state", function (req, res) {
   pool
     .query(dbQuery)
     .then((result) => {
-      let success = cache.set(req.originalUrl, result.rows);
-      if (success) console.log(req.originalUrl + " successfully cached");
+      let success = cache.set("/api/cities" + req._parsedUrl.path, result.rows);
+      if (success)
+        console.log(
+          "/api/cities" + req._parsedUrl.path + " successfully cached"
+        );
       res.send(result.rows);
     })
     .catch((err) => {
