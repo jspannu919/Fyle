@@ -24,9 +24,9 @@ const Table = ({ branches }) => {
         });
       });
       columns.push({
-        title: parseLabel(key),
-        dataIndex: key,
-        key: key,
+        title: parseLabel("favourite"),
+        dataIndex: "favourite",
+        key: "favourite",
         filters: [
           { text: "Favourite Only", value: "Favourite" },
           { text: "All", value: "All" },
