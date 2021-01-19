@@ -17,11 +17,12 @@ const Table = ({ branches }) => {
     let columns = [];
     if (branches.length) {
       Object.keys(branches[0]).forEach((key) => {
-        columns.push({
-          title: parseLabel(key),
-          dataIndex: key,
-          key: key,
-        });
+        if (key !== "favourite")
+          columns.push({
+            title: parseLabel(key),
+            dataIndex: key,
+            key: key,
+          });
       });
       columns.push({
         title: parseLabel("favourite"),
