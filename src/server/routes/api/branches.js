@@ -13,6 +13,7 @@ router.get("/", function (req, res) {
       "OR district like '%" + queryText + "%'",
       "OR state like '%" + queryText + "%'",
       Number.isNaN(Number(queryText)) ? "" : "OR bank_id = " + queryText,
+      "order by ifsc",
       "offset " + offset,
       "limit " + limit,
     ].join(" ");
@@ -42,6 +43,7 @@ router.get("/autocomplete", function (req, res) {
     dbQuery = [
       "select * from branches where",
       "branch like '%" + queryText + "%'",
+      "order by ifsc",
       "offset " + offset,
       "limit " + limit,
     ].join(" ");
